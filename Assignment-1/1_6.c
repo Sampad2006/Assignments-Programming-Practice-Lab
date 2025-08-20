@@ -1,40 +1,36 @@
 /*
 Store name and age of number of number of persons
+Sampad De
+BCSE-II
+002410501025
 */
-//Sampad De
-//002410501025
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
-struct Student {
+typedef struct{
     char name[100];
     int age;
-    
-};
-void sort(struct Student *arr, int n) {
+}Person;
+void sort(Person *arr, int n) { 
     for (int i = 0; i < n-1; i++) {
     for (int j = i+1; j < n; j++) {
     if (arr[i].age>arr[j].age) {
-    // Swap ages
-    int tempAge = arr[i].age;
-    arr[i].age = arr[j].age;
-    arr[j].age = tempAge;
-    // Swap names
-    char *tempName = arr[i].name;
-    arr[i].name = arr[j].name;
-    arr[j].name = tempName;
+    Person temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
     }
     }
     }
 }
 
-void display(char**names,int *ages,int n){
+void display(Person *arr,int n){
 printf("\nAfter sorting:\n");
 for (int i=0;i<n;i++){
-printf("%s - %d\n",names[i],ages[i]);
+printf("%s - %d\n",arr[i].name,arr[i].age);
 }
 }
 
@@ -42,22 +38,18 @@ int main() {
 int n;
 printf("Enter number of persons: ");
 scanf("%d",&n);
-int *ages = (int*)malloc(n*sizeof(int));
-char **names = (char**)malloc(n*sizeof(char*));
+Person *arr = (Person*)malloc(n*sizeof(Person));
 char str[100];
 for (int i = 0; i < n; i++) {
 printf("Enter name: ");
-scanf("%s",str);
-names[i] = malloc(strlen(str)+1);
-strcpy(names[i],str);
+scanf("%s",&arr[i].name);
+// strcpy(arr[i].name,str);
 printf("Enter age: ");
-scanf("%d",&ages[i]);
+scanf("%d",&arr[i].age);
 }
-sort(names,ages,n);
-display(names,ages,n);
+sort(arr,n);
+display(arr,n);
 //clearing up memory
-for (int i=0;i<n;i++) free(names[i]);
-free(names);
-free(ages);
+free(arr);
 return 0;
 }
