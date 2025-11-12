@@ -1,5 +1,6 @@
 /*
-Implement a one dimensional array of integers where array size of the array will be provided during runtime.Accept the value for the elements and print those using pointers.
+Implement a one dimensional array of integers where array size of the array will be provided during runtime.
+Accept the value for the elements and print those using pointers.
 
 Sampad De
 002410501025
@@ -10,20 +11,18 @@ Sampad De
 #include <string.h>
 
 void solve(){
-   int rows, cols;
-    printf("Enter n");
+    printf("Enter n ");
     int n;
-    scanf("%d %d", &n);
+    scanf("%d", &n);
     int *arr; 
     //single dimensional array
-    arr= (int *)malloc(cols * sizeof(int));
+    arr= (int*)malloc(n * sizeof(int));
    
     printf("Enter elements:\n");
-    for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < cols; j++) {
-    scanf("%d", &arr[i]);
+    for(int i=0;i<n;i++){
+        scanf("%d",&arr[i]);
     }
-}
+printf("Array: \n");
 for(int i=0;i<n;i++){
     printf("%d ",arr[i]);
 }

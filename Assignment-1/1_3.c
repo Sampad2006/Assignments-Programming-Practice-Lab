@@ -1,5 +1,7 @@
 /*
-Implement a 2 dimensional array of integers using a) array of pointers b)pointer to pointer(with two malloc statements and again with one malloc statement),c)pointer to an array.Accept the value for the elements and print those.
+Implement a 2 dimensional array of integers using a) array of pointers 
+b)pointer to pointer(with two malloc statements and again with one malloc statement),
+c)pointer to an array.Accept the value for the elements and print those.
 
 Sampad De
 002410501025
@@ -135,15 +137,20 @@ void solve3(){
 }
 int main(){
     int t;
-    printf("Enter 1 for part 1 \n2 then 1 or 2 for parts1,2\n3 for part 3\n");
+    while(1){
+        printf("Enter 1 for part 1 \n2 then 1 or 2 for parts1,2\n3 for part 3\n 4 to Exit");
     scanf("%d",&t);
     // t=1;
     if(t==1) solve1();
     else if(t==2){
+         printf("Enter 1 for part 1 and 2 for part 2:\n");
         int c;scanf("%d",&c);
         if(c==1) solve2_1();
         else if(c==2)
          solve2_2();
         }
-    else solve3();
+    else if(t==3) solve3();
+    else{exit(0);}
+    }
+    
 }

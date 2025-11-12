@@ -17,7 +17,8 @@ scanf("%d",&var);
 
 int *p=&var;//pointer to the variable
 int **pp=&p;//pointer to pointer
-printf("Printing via pointer  then via pointer to pointer %d\n%d",*p,**pp);
+printf("Printing via pointer: %d\n",*p);
+printf("Printing  via pointer to pointer: %d\n",**pp);
 }
 
 int main(){

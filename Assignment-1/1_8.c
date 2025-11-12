@@ -10,17 +10,21 @@ BCSE-II
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
+//structure as template
 typedef struct {
     int roll;
     char name[100];
     int score;
 } Student;
 
-//sorting
-void sort(Student *arr, int n, int (*cmp)(Student, Student)) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = i + 1; j < n; j++) {
+
+//custom comparator
+void sort(Student *arr, int n, bool (*cmp)(Student, Student)) {
+    // Selection sort
+    for (int i=0;i<n-1;i++){
+        for (int j = i+1;j<n;j++) {
             if (cmp(arr[i], arr[j])) {
                 Student temp = arr[i];
                 arr[i] = arr[j];
@@ -28,32 +32,33 @@ void sort(Student *arr, int n, int (*cmp)(Student, Student)) {
             }
         }
     }
+    
 }
 
-// all possibilities 
+//All possibilities
+
 // Roll ascending
-int compareByRollAsc(Student a, Student b) {
-    return a.roll - b.roll;
+bool RollAsc(Student a, Student b) {
+    return a.roll>b.roll;
 }
 // Roll descending
-int compareByRollDesc(Student a, Student b) {
-    return b.roll - a.roll;
+bool RollDsc(Student a, Student b) {
+    return b.roll>a.roll;
 }
 // Score ascending
-int compareByScoreAsc(Student a, Student b) {
-    return a.score - b.score;
+bool ScoreAsc(Student a, Student b) {
+    return a.score>b.score;
 }
 // Score descending
-int compareByScoreDesc(Student a, Student b) {
-    return b.score - a.score;
+bool ScoreDcs(Student a, Student b) {
+    return b.score>a.score;
 }
 
-// Display
+// displays all the students
 void display(Student *arr,int n) {
-    printf("\nStudent Records\n");
+    printf("\nRecord of students\n");
     for (int i = 0;i<n;i++) {
-        printf("Roll: %d, Name: %s, Score: %d\n",
-          arr[i].roll, arr[i].name, arr[i].score);
+        printf("Roll: %d, Name: %s, Score: %d\n",arr[i].roll,arr[i].name,arr[i].score);
     }
 }
 
@@ -61,32 +66,32 @@ int main() {
     int n;
     printf("Enter number of students: ");
     scanf("%d", &n);
-
-    Student *arr=(Student*)malloc(n*sizeof(Student));
-    // Input
-    for (int i = 0; i < n; i++) {
-        printf("Enter roll: ");
-        scanf("%d", &arr[i].roll);
-        printf("Enter name: ");
-        scanf("%s", arr[i].name);
-        printf("Enter score: ");
-        scanf("%d", &arr[i].score);
+    Student *arr=(Student*)malloc(n*sizeof(Student)); // Allocating memory
+    //Input
+    for (int i=0;i<n;i++) {
+    printf("Enter roll: ");
+    scanf("%d", &arr[i].roll);
+    printf("Enter name: ");
+    scanf(" %[^\n]",&arr[i].name);
+    printf("Enter score: ");
+    scanf("%d", &arr[i].score);
     }
-
+    while(1){
     int choice;
-    printf("\nSort by:\n1. Roll-Asc\n2. Roll-Desc\n3. Score-Asc\n4.Score-Desc\n");
+    printf("\nSort by:\n1. Ascending-Roll\n2. Descending-Roll\n3. Ascending-Score\n4. Descending-Score\n5. To exit\n");
     scanf("%d", &choice);
-    //menu
+
     switch (choice){
-        case 1: sort(arr,n,compareByRollAsc);break;
-        case 2: sort(arr,n,compareByRollDesc);break;
-        case 3: sort(arr,n,compareByScoreAsc);break;
-        case 4: sort(arr,n,compareByScoreDesc);break;
+        case 1: sort(arr,n,RollAsc);break;
+        case 2: sort(arr,n,RollDsc);break;
+        case 3: sort(arr,n,ScoreAsc);break;
+        case 4: sort(arr,n,ScoreDcs);break;
+        case 5: exit(1);
         default:printf("Invalid choice\n");free(arr);return 0;
     }
-
     display(arr, n);
-    //clearing up memory
+    }
+    //clearing the memory
     free(arr);
     return 0;
 }

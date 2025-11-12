@@ -1,4 +1,5 @@
-This repository contains the C codes in the programming practice lab at BCSE-2.
-All latest updated code after each class needs to be updated.
+This repository contains the C and C++ codes for the programming practice lab at BCSE-2.
+All latest updated code can be found.
+
 Sampad De
 002410501025

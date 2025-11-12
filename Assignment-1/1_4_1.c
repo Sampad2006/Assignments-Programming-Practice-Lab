@@ -1,6 +1,7 @@
 /*
-Implement the programs in Q2 (and Q3 in next part) by breaking it into functions for i)dimensions from user, ii)dynamic memory
-
+Implement the programs in Q2 (and Q3 in next part) by breaking it into functions for
+i) getting the dimensions from user,
+ii) dynamic memory allocation, iii) accepting the values and iv) printing the values.
 Sampad De
 002410501025
 */
